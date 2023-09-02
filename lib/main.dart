@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/views/Auth/login_view.dart';
-import 'package:food_app/views/Auth/phone_registration_view.dart';
-import 'package:food_app/views/Auth/resset_password_view.dart';
-import 'package:food_app/views/Auth/signUp_view.dart';
-import 'package:food_app/views/Auth/verfication_code_view.dart';
-import 'package:food_app/views/Home/home_view.dart';
-import 'package:food_app/views/details/category_details_view.dart';
-import 'package:food_app/views/details/food_details_view.dart';
-import 'package:food_app/views/splash_view.dart';
-import 'package:food_app/views/welcome_view.dart';
+import 'package:food_app/Features/home/presentation/views/home_view.dart';
+import 'package:food_app/Features/welcome/presntation/views/splash_view.dart';
+import 'package:food_app/Features/welcome/presntation/views/welcome_view.dart';
+
+import 'Features/Auth/presentation/views/login_view.dart';
+import 'Features/Auth/presentation/views/phone_registration_view.dart';
+import 'Features/Auth/presentation/views/resset_password_view.dart';
+import 'Features/Auth/presentation/views/signUp_view.dart';
+import 'Features/Auth/presentation/views/verfication_code_view.dart';
+import 'Features/inner/presentation/views/category_details_view.dart';
+import 'Features/inner/presentation/views/food_details_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,9 +27,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepOrange,
       ),
       home:
-      CategoryDetailsView(),
+      // CategoryDetailsView(),
       // HomeView(),
-      // const SplashView(),
+      const SplashView(),
       routes: {
         SignUpView.routeName: (context) =>const SignUpView(),
         LoginView.routeName:(context) => const LoginView(),
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         PhoneRegistrationView.routeName:(context)=>PhoneRegistrationView(),
         HomeView.routeName:(context)=> HomeView(),
         FoodDetailsView.routeName:(context)=> FoodDetailsView(),
+        CategoryDetailsView.routeName:(context)=>CategoryDetailsView()
 
       },
     );
