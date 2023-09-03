@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/Features/home/data/models/item_model.dart';
 import 'package:food_app/Features/home/presentation/views/home_view.dart';
+import 'package:food_app/Features/user/presentation/views/edit_profle_view.dart';
 import 'package:food_app/Features/welcome/presntation/views/splash_view.dart';
 import 'package:food_app/Features/welcome/presntation/views/welcome_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
         FoodDetailsView.routeName:(context)=> const FoodDetailsView(),
         CategoryDetailsView.routeName:(context)=>CategoryDetailsView(),
         UserView.routeName :(context)=> UserView(),
+        EditProfileView.routeName:(context)=>EditProfileView(),
 
       },
     );

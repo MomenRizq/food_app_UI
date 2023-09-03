@@ -26,6 +26,9 @@ class _LoginFormState extends State<LoginForm> {
 
     if (isValid) {
       _formKey.currentState!.save();
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (ctx) => const BottomBarView(),
+      ));
     }
   }
 
@@ -134,9 +137,6 @@ class _LoginFormState extends State<LoginForm> {
               padding: const EdgeInsets.symmetric(horizontal: 65.0),
               child: CustomButton.StyleTwo(fun:(){
                 _submitFormLogin();
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (ctx) => const BottomBarView(),
-                ));
               }, buttonText: "Login", hight: 60, width: double.infinity , color: KprimaryColor),
             )
           ],

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/Core/consts/colors.dart';
 
-class CustomTextFieldReadOnly extends StatefulWidget {
-  const CustomTextFieldReadOnly(
+class CustomFormTextField extends StatefulWidget {
+  const CustomFormTextField(
       {this.hintText,
       this.obscureText = false,
       required this.onchanged,
       required this.emptyText,
       required this.label,
-    this.initText});
+      this.readOnly = false, this.initText});
 
   final String? hintText;
 
@@ -22,12 +23,13 @@ class CustomTextFieldReadOnly extends StatefulWidget {
 
   final Function(String)? onchanged;
 
+  final bool readOnly ;
 
   @override
-  State<CustomTextFieldReadOnly> createState() => _CustomTextFieldReadOnlyState();
+  State<CustomFormTextField> createState() => _CustomFormTextFieldState();
 }
 
-class _CustomTextFieldReadOnlyState extends State<CustomTextFieldReadOnly> {
+class _CustomFormTextFieldState extends State<CustomFormTextField> {
   late bool _isVisible = widget.obscureText;
 
   @override
@@ -46,7 +48,7 @@ class _CustomTextFieldReadOnlyState extends State<CustomTextFieldReadOnly> {
           ),
           TextFormField(
             initialValue:widget.initText,
-            readOnly: true,
+            readOnly: widget.readOnly,
             onChanged: widget.onchanged,
             obscureText: widget.obscureText,
             style: TextStyle(color: Colors.black),
@@ -66,7 +68,7 @@ class _CustomTextFieldReadOnlyState extends State<CustomTextFieldReadOnly> {
               contentPadding: EdgeInsets.symmetric(horizontal: 15 , vertical: 15),
               focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide(color :Colors.grey.shade400)),
+                  borderSide: BorderSide(color :widget.readOnly ? Colors.grey.shade400: KprimaryColor)),
               enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   borderSide: BorderSide(color: Colors.grey.shade400)),

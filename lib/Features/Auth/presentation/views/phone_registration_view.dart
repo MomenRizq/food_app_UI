@@ -5,6 +5,8 @@ import 'package:food_app/Core/widgets/custom_button_widget.dart';
 import 'package:food_app/Core/widgets/custom_form_text_field.dart';
 import 'package:food_app/Core/widgets/custom_text_widget.dart';
 import 'package:food_app/Core/widgets/header_auth_widget.dart';
+import 'package:food_app/Features/home/presentation/views/bottom_bar_view.dart';
+import 'package:food_app/Features/home/presentation/views/home_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
@@ -87,6 +89,9 @@ class PhoneRegistrationView extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(65.0),
                 child: CustomButton.StyleTwo(fun:(){
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (ctx) => const BottomBarView(),
+                  ));
                 }, buttonText: "Send new password", hight: 60, width: double.infinity , color: KprimaryColor),
               )
             ],
