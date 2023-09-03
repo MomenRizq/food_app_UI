@@ -1,12 +1,15 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/Core/consts/colors.dart';
 import 'package:food_app/Core/widgets/custom_text_widget.dart';
 import 'package:food_app/Core/widgets/heart_button_widget.dart';
 import 'package:food_app/Core/widgets/review_label_widget.dart';
+import 'package:food_app/Features/home/data/models/item_model.dart';
 import 'package:food_app/Features/inner/presentation/views/food_details_view.dart';
 
 class ResturantItemWidget extends StatelessWidget {
-  const ResturantItemWidget({Key? key}) : super(key: key);
+  const ResturantItemWidget({Key? key, required this.item}) : super(key: key);
+  final ItemModel item ;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,7 @@ class ResturantItemWidget extends StatelessWidget {
       child: InkWell(
         splashColor: Colors.transparent,
         onTap: () {
-          Navigator.pushNamed(context, FoodDetailsView.routeName);
+          Navigator.pushNamed(context, FoodDetailsView.routeName , arguments: item);
         },
         child: Container(
           width: 266,//266
@@ -45,9 +48,9 @@ class ResturantItemWidget extends StatelessWidget {
                   children: <Widget>[
                     AspectRatio(
                       aspectRatio: 2,
-                      child: Image.asset(
-                        "assets/images/resturant_1.png",
-                        fit: BoxFit.fitWidth,
+                      child:FancyShimmerImage(
+                        imageUrl: item.image,
+                        boxFit: BoxFit.fitWidth,
                       ),
                     ),
                     Container(
@@ -59,7 +62,7 @@ class ResturantItemWidget extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: CustomTextWidget(
-                              text: "McDonald’s",
+                              text: item.name,
                               textSize: 15,
                               isTitle: true,
                             ),
@@ -138,10 +141,10 @@ class ResturantItemWidget extends StatelessWidget {
                   right: 8,
                   child: HeartButtonWidget(color: Colors.red,),
                 ),
-                const Positioned(
+                 Positioned(
                   top: 8,
                   left: 8,
-                  child:ReviewLabelWidget(),
+                  child:ReviewLabelWidget(item: item,),
                 )
               ],
             ),

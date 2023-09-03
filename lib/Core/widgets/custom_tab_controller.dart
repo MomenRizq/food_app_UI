@@ -21,25 +21,29 @@ class CustomTabController extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(3.0),
-          child: TabBar(
-            indicator:  BoxDecoration(
-              color: KprimaryColor,
-              borderRadius: BorderRadius.circular(25),
-            ),
-            labelColor: Colors.white,
-            unselectedLabelColor: KprimaryColor,
-            tabs:
-            [
-              Tab(
-                text: firstText,
+          child: Column(
+            children: [
+              TabBar(
+                indicator:  BoxDecoration(
+                  color: KprimaryColor,
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                labelColor: Colors.white,
+                unselectedLabelColor: KprimaryColor,
+                tabs:
+                [
+                  Tab(
+                    text: firstText,
 
-              ),
-              Tab(
-                text: seconedText,
+                  ),
+                  Tab(
+                    text: seconedText,
+
+                  ),
+                ],
 
               ),
             ],
-
           ),
         ),
       ),

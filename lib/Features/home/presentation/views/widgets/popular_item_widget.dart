@@ -1,16 +1,23 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/Core/widgets/custom_text_widget.dart';
 import 'package:food_app/Core/widgets/heart_button_widget.dart';
 import 'package:food_app/Core/widgets/review_label_widget.dart';
+import 'package:food_app/Features/home/data/models/item_model.dart';
+import 'package:food_app/Features/inner/presentation/views/food_details_view.dart';
 
 class PopularItemWidget extends StatelessWidget {
-  const PopularItemWidget({Key? key}) : super(key: key);
+  const PopularItemWidget({Key? key, required this.item}) : super(key: key);
+
+  final ItemModel item ;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       splashColor: Colors.transparent,
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, FoodDetailsView.routeName , arguments: item);
+      },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.400, //266
         height: MediaQuery.of(context).size.height * 0.310,
@@ -40,14 +47,14 @@ class PopularItemWidget extends StatelessWidget {
                           borderRadius: const BorderRadius.only(
                               bottomLeft: Radius.circular(22.0),
                               bottomRight: Radius.circular(22.0)),
-                          child: Image.asset(
-                            "assets/images/resturant_1.png",
-                            fit: BoxFit.cover,
+                          child: FancyShimmerImage(
+                            imageUrl: item.image,
+                            boxFit: BoxFit.cover,
                             width: MediaQuery.of(context).size.width,
                           )),
                     ),
                     Container(
-                      height: 70,
+                      height: 75,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -55,20 +62,24 @@ class PopularItemWidget extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 13.0 ,left: 10 ),
-                                child: CustomTextWidget(
-                                  text: "Salmon Salad",
-                                  textSize: 14,
-                                  isTitle: true,
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.20,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 13.0 ,left: 10 ),
+                                  child: CustomTextWidget(
+                                    text:item.name,
+                                    textSize: 12,
+                                    isTitle: true,
+                                   maxLines: 2,
+                                  ),
                                 ),
                               ),
                               Spacer(),
                               Padding(
                                 padding: const EdgeInsets.only(top: 13.0 , right: 10),
                                 child: CustomTextWidget(
-                                  text: "\$${5.5}",
-                                  textSize: 13,
+                                  text: "\$${item.price}",
+                                  textSize: 12,
                                   isTitle: true,
                                 ),
                               ),
@@ -77,8 +88,9 @@ class PopularItemWidget extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(top: 5 , left: 10 , right: 15),
                             child: CustomTextWidget(
-                              text: "Baked salmon fish",
-                              textSize: 12, color: const Color(0xFF8A8E9B)
+                              text: item.description,
+                              textSize: 12, color: const Color(0xFF8A8E9B),
+                              maxLines: 1,
                             ),
                           ),
                         ],
@@ -93,10 +105,10 @@ class PopularItemWidget extends StatelessWidget {
                 child: HeartButtonWidget(color: Colors.red,),
               ),
 
-              const Positioned(
+              Positioned(
                 top: 120,
                 left: 10,
-                child:ReviewLabelWidget(),
+                child:ReviewLabelWidget(item:item),
               )
             ],
           ),

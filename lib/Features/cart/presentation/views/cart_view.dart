@@ -18,7 +18,7 @@ class CartView extends StatelessWidget {
       key: CartKey,
       body: SingleChildScrollView(
         child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Column(
               children: [
                 const SizedBox(
@@ -81,27 +81,27 @@ class CartView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.25,
+                                width: MediaQuery.of(context).size.width * 0.26,
                                 child: Row(
                                   children: [
                                     QuantityControllerWidget(
                                         fun: () {},
                                         color: Colors.white,
                                         icon: CupertinoIcons.minus,
-                                        sizeIcon: 12,
+                                        sizeIcon: 10,
                                         iconColor: KprimaryColor),
                                     Flexible(
                                       flex: 2,
                                       child: CustomTextWidget(
                                         text: "02",
-                                        textSize: 12,
+                                        textSize: 11,
                                       ),
                                     ),
                                     QuantityControllerWidget(
                                         fun: () {},
                                         color: KprimaryColor,
                                         icon: CupertinoIcons.plus,
-                                        sizeIcon: 13,
+                                        sizeIcon: 10,
                                         iconColor: Colors.white)
                                   ],
                                 ),

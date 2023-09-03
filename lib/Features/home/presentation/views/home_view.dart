@@ -2,7 +2,10 @@ import 'package:awesome_drawer_bar/awesome_drawer_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:food_app/Core/consts/colors.dart';
+import 'package:food_app/Core/consts/item_data.dart';
 import 'package:food_app/Core/widgets/custom_text_widget.dart';
+import 'package:food_app/Features/home/data/models/category_model.dart';
+import 'package:food_app/Features/home/data/models/item_model.dart';
 import 'package:food_app/Features/home/presentation/views/widgets/categories_item_widget.dart';
 import 'package:food_app/Features/home/presentation/views/widgets/popular_item_widget.dart';
 import 'package:food_app/Features/home/presentation/views/widgets/resturant_item_widget.dart';
@@ -108,12 +111,13 @@ class HomeView extends StatelessWidget {
               child: SizedBox(
                 height: 120,
                 child: ListView.builder(
-                  itemCount: 10,
+                  itemCount: categoryData.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
-                    return const Padding(
+                    CategoryModel cat = categoryData[index];
+                    return Padding(
                       padding: EdgeInsets.all(6),
-                      child: CategoriesItemWidget(),
+                      child: CategoriesItemWidget(category: cat,),
                     );
                   },
                 ),
@@ -143,10 +147,11 @@ class HomeView extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListView.builder(
-                    itemCount: 10,
+                    itemCount: itemData.length,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return const ResturantItemWidget();
+                      ItemModel item = itemData[index];
+                      return  ResturantItemWidget(item: item);
                     }),
               ),
             ),
@@ -184,8 +189,9 @@ class HomeView extends StatelessWidget {
                 // Vertical spacing
                 mainAxisSpacing: 15,
                 // Horizontal spacing
-                children: List.generate(6, (index) {
-                  return const PopularItemWidget();
+                children: List.generate(itemData.length, (index) {
+                  ItemModel item = itemData[index];
+                  return  PopularItemWidget(item: item,);
                 }),
               ),
             ),

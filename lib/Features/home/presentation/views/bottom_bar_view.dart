@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:food_app/Core/consts/colors.dart';
 import 'package:food_app/Features/home/presentation/views/home_view.dart';
@@ -32,35 +33,32 @@ class _BottomBarViewState extends State<BottomBarView> {
     return Scaffold(
       key: scaffoldKey,
       body: _pages[_selectedIndex]['page'],
-      bottomNavigationBar: Visibility(
-        visible: true,
-        child: BottomNavigationBar(
-          backgroundColor: Colors.white,
-          type: BottomNavigationBarType.fixed,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          currentIndex: _selectedIndex,
-          unselectedItemColor:  Colors.black26,
-          selectedItemColor:  KprimaryColor,
-          onTap: _selectedPage,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon:
-                  Icon(_selectedIndex == 0 ? IconlyBold.home : IconlyLight.home),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                  _selectedIndex == 1 ? IconlyBold.bag2 : IconlyLight.bag2),
-              label: "Cart",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                  _selectedIndex == 2 ? IconlyBold.heart : IconlyLight.heart),
-              label: "Wishlist",
-            ),
-          ],
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        type: BottomNavigationBarType.fixed,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        currentIndex: _selectedIndex,
+        unselectedItemColor:  Colors.black26,
+        selectedItemColor:  KprimaryColor,
+        onTap: _selectedPage,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon:
+            Icon(_selectedIndex == 0 ? IconlyBold.home : IconlyLight.home),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+                _selectedIndex == 1 ? IconlyBold.bag2 : IconlyLight.bag2),
+            label: "Cart",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+                _selectedIndex == 2 ? IconlyBold.heart : IconlyLight.heart),
+            label: "Wishlist",
+          ),
+        ],
       ),
     );
   }

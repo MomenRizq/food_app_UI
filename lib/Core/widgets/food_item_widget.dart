@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/Core/consts/item_data.dart';
 import 'package:food_app/Core/widgets/custom_text_widget.dart';
 import 'package:food_app/Core/widgets/heart_button_widget.dart';
 import 'package:food_app/Core/widgets/review_label_widget.dart';
+import 'package:food_app/Features/home/data/models/category_model.dart';
+import 'package:food_app/Features/home/data/models/item_model.dart';
 
 class FoodItemWidget extends StatelessWidget {
-  const FoodItemWidget({Key? key}) : super(key: key);
+  const FoodItemWidget({Key? key, required this.item, }) : super(key: key);
+  final ItemModel item ;
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +47,8 @@ class FoodItemWidget extends StatelessWidget {
                             borderRadius: const BorderRadius.only(
                                 bottomLeft: Radius.circular(22.0),
                                 bottomRight: Radius.circular(22.0)),
-                            child: Image.asset(
-                              "assets/images/food/pizza.png",
+                            child: Image.network(
+                              item.image,
                               fit: BoxFit.cover,
                             )),
                       ),
@@ -60,7 +64,7 @@ class FoodItemWidget extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 13.0 ,left: 10 , right: 15),
                                   child: CustomTextWidget(
-                                    text: "Chicken Hawaiian",
+                                    text: item.name,
                                     textSize: 18,
                                     isTitle: true,
                                   ),
@@ -68,7 +72,7 @@ class FoodItemWidget extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 13.0 , right: 13),
                                   child: CustomTextWidget(
-                                    text: "\$${5.5}",
+                                    text: "\$${item.price}",
                                     textSize: 16,
                                     isTitle: true,
                                   ),
@@ -78,8 +82,9 @@ class FoodItemWidget extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(top: 5 , left: 10 , right: 15),
                               child: CustomTextWidget(
-                                  text: "Chicken, Cheese and pineapple",
-                                  textSize: 16, color: const Color(0xFF8A8E9B)
+                                  text: "${item.description}",
+                                  textSize: 16, color: const Color(0xFF8A8E9B),
+                                maxLines: 1,
                               ),
                             ),
                           ],
@@ -94,10 +99,10 @@ class FoodItemWidget extends StatelessWidget {
                   child: HeartButtonWidget(color: Colors.red,),
                 ),
 
-                const Positioned(
+                Positioned(
                   top: 120,
                   left: 10,
-                  child:ReviewLabelWidget(),
+                  child:ReviewLabelWidget(item: item),
                 )
               ],
             ),

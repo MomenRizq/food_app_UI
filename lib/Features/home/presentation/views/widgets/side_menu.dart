@@ -3,6 +3,7 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:food_app/Core/consts/colors.dart';
 import 'package:food_app/Core/widgets/custom_button_widget.dart';
 import 'package:food_app/Core/widgets/custom_text_widget.dart';
+import 'package:food_app/Features/user/presentation/views/user_view.dart';
 
 
 class SideMenu extends StatelessWidget {
@@ -50,7 +51,7 @@ class SideMenu extends StatelessWidget {
             title: const Text("My Profile"),
             leading: const Icon(IconlyBold.profile),
             onTap: () {
-              // navigateTo(context, GetWishListScreen());
+              Navigator.pushNamed(context, UserView.routeName);
             }),
         ListTile(
             title: const Text("Delivery Address"),

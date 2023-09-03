@@ -14,7 +14,7 @@ class QuantityControllerWidget extends StatelessWidget {
     return Flexible(
       flex: 2,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 4),
         child: Container(
           decoration: BoxDecoration(
               color: color,

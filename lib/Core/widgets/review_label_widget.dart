@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/Core/widgets/custom_text_widget.dart';
+import 'package:food_app/Features/home/data/models/item_model.dart';
 
 class ReviewLabelWidget extends StatelessWidget {
-  const ReviewLabelWidget({Key? key}) : super(key: key);
+  const ReviewLabelWidget({Key? key, required this.item }) : super(key: key);
+  final ItemModel item ;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +27,9 @@ class ReviewLabelWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomTextWidget(text: "4.5", textSize: 12 , isTitle: true,),
+            CustomTextWidget(text: "${item!.review}", textSize: 12 , isTitle: true,),
             const Icon(Icons.star , color: Colors.yellow,size: 16,),
-            CustomTextWidget(text: "(25+)", textSize: 9 , color: Colors.grey,),
+            CustomTextWidget(text: "(${item!.reviewNum.toInt()})", textSize: 9 , color: Colors.grey,),
           ],
         ),
       ),

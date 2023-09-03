@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:food_app/Core/consts/colors.dart';
+import 'package:food_app/Core/consts/item_data.dart';
 import 'package:food_app/Core/widgets/back_widget.dart';
 import 'package:food_app/Core/widgets/custom_text_widget.dart';
-import 'package:food_app/Features/inner/presentation/views/widgets/food_item_widget.dart';
+import 'package:food_app/Core/widgets/food_item_widget.dart';
+import 'package:food_app/Features/home/data/models/category_model.dart';
+import 'package:food_app/Features/home/data/models/item_model.dart';
 
 class CategoryDetailsView extends StatefulWidget {
    CategoryDetailsView({Key? key}) : super(key: key);
@@ -14,10 +17,13 @@ class CategoryDetailsView extends StatefulWidget {
 }
 
 class _CategoryDetailsViewState extends State<CategoryDetailsView> {
-  String _catValue = 'Popular';
+  Category? _selectedCategory;
+
 
   @override
   Widget build(BuildContext context) {
+    final cat = ModalRoute.of(context)!.settings.arguments as CategoryModel;
+    List <ItemModel> itemList = itemData.where((element) => element.category.toString().split('.').last == cat.title).toList() ;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 25.0),
@@ -79,7 +85,7 @@ class _CategoryDetailsViewState extends State<CategoryDetailsView> {
                 child: Row(
                   children: [
                     CustomTextWidget(text: "Short by: ", textSize: 14),
-                    _categoryDropDown(),
+                    _categoryDropDown(cat),
                     const Spacer(),
                     IconButton(
                       onPressed: () {},
@@ -100,9 +106,11 @@ class _CategoryDetailsViewState extends State<CategoryDetailsView> {
                   padding: const EdgeInsets.all(0),
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
-                  itemCount: 6,
+                    physics: ScrollPhysics(),
+                  itemCount: itemList.length,
                     itemBuilder: (context,index){
-                  return const FoodItemWidget();
+                      ItemModel item =itemList[index] ;
+                  return FoodItemWidget(item: item,);
                 }),
               ),
 
@@ -113,54 +121,35 @@ class _CategoryDetailsViewState extends State<CategoryDetailsView> {
     );
   }
 
-  Widget _categoryDropDown() {
+  Widget _categoryDropDown(CategoryModel cat) {
     return Container(
-      width: 125,
+      width: 150,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: DropdownButtonHideUnderline(
-            child: DropdownButton<String>(
-              isExpanded: true,
-              style: TextStyle(
-                color: KprimaryColor,
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
-              ),
-              value: _catValue,
-              onChanged: (value) {
-                setState(() {
-                  _catValue = value!;
-                });
-                print(_catValue);
-              },
-              hint: const Text('Select a category'),
-              items: const [
-                DropdownMenuItem(
-                  value: 'Popular',
-                  child: Text(
-                    'Popular',
-                  ),
-                ),
-                DropdownMenuItem(
-                  value: 'Burger',
-                  child: Text(
-                    'Burger',
-                  ),
-                ),
-                DropdownMenuItem(
-                  value: 'Pizza',
-                  child: Text(
-                    'Pizza',
-                  ),
-                ),
-                DropdownMenuItem(
-                  value: 'Sandwich',
-                  child: Text(
-                    'Sandwich',
-                  ),
-                ),
-              ],
-            )),
+          child: DropdownButton<Category>(
+            isExpanded: true,
+            style: TextStyle(
+              color: KprimaryColor,
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
+            ),
+            value: _selectedCategory,
+            onChanged: (Category? newValue) {
+              setState(() {
+                _selectedCategory = newValue!;
+              });
+              print(_selectedCategory);
+            },
+            hint:  Text("${cat.title}"),
+            items: Category.values.map((Category category) {
+              return DropdownMenuItem<Category>(
+                value: category,
+                child: Text(category.toString().split('.').last),
+              );
+            }).toList(),
+          ),
+        )
       ),
     );
   }

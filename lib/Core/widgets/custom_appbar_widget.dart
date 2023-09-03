@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/Core/consts/colors.dart';
 import 'package:food_app/Core/widgets/custom_text_widget.dart';
+
 
 class CustomAbbBarWidget extends StatelessWidget {
   const CustomAbbBarWidget({Key? key, required this.scaffoldKey})
@@ -9,7 +11,7 @@ class CustomAbbBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return  Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(

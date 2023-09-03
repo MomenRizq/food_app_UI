@@ -1,3 +1,4 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -13,14 +14,18 @@ import 'package:food_app/Core/widgets/review_label_widget.dart';
 import 'package:food_app/Features/inner/presentation/views/widgets/quantity_controller_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../home/data/models/item_model.dart';
+
 class FoodDetailsView extends StatelessWidget {
   static const routeName = "/FoodDetailsView";
 
-  const FoodDetailsView({Key? key}) : super(key: key);
+  const FoodDetailsView({Key? key,}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
     final _quantityTextController = TextEditingController();
+    final item = ModalRoute.of(context)!.settings.arguments as ItemModel;
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -39,9 +44,9 @@ class FoodDetailsView extends StatelessWidget {
                       height: 200,
                       child: ClipRRect(
                         borderRadius: const BorderRadius.all(Radius.circular(10)),
-                        child: Image.asset(
-                          'assets/images/resturant_1.png',
-                          fit: BoxFit.cover,
+                        child: FancyShimmerImage(
+                         imageUrl: item.image,
+                          boxFit: BoxFit.cover,
                         ),
                       ),
                     ),
@@ -66,7 +71,7 @@ class FoodDetailsView extends StatelessWidget {
 
               //Title
               CustomTextWidget(
-                text: "Ground Beef Tacos",
+                text: item.name,
                 textSize: 26,
                 isTitle: true,
               ),
@@ -74,7 +79,7 @@ class FoodDetailsView extends StatelessWidget {
               //price and review
               Row(
                 children: [
-                  const ReviewLabelWidget(),
+                 ReviewLabelWidget(item: item),
                   TextButton(
                       onPressed: () {},
                       child: Text(
@@ -97,7 +102,7 @@ class FoodDetailsView extends StatelessWidget {
                               color: KprimaryColor, fontSize: 18),
                           children: [
                         TextSpan(
-                          text: '9.50',
+                          text: '${item.price}',
                           style: GoogleFonts.poppins(
                               color: KprimaryColor,
                               fontSize: 27,
@@ -117,7 +122,7 @@ class FoodDetailsView extends StatelessWidget {
                         Flexible(
                           flex: 1,
                           child: CustomTextWidget(
-                            text: "02",
+                            text: "01",
                             textSize: 15,
                           ),
                         ),
@@ -139,7 +144,7 @@ class FoodDetailsView extends StatelessWidget {
               //Description
               CustomTextWidget(
                   text:
-                      "Brown the beef better. Lean ground beef – I like to use 85% lean angus. Garlic – use fresh chopped. Spices – chili powder, cumin, onion powder.",
+                      item.description,
                   textSize: 15,
                 color: const Color(0xff7E8392),
               ),
@@ -163,7 +168,7 @@ class FoodDetailsView extends StatelessWidget {
               ),
 
               //Add to cart button
-              Center(child: CustomButton.StyleThree(icon:IconlyBold.bag ,fun: (){}, buttonText: "ADD To CART", color: KprimaryColor, hight: 55, width:170))
+              Center(child: CustomButton.StyleThree(icon:IconlyBold.bag ,fun: (){}, buttonText: "ADD TO CART", color: KprimaryColor, hight: 55, width:170))
 
             ],
           ),

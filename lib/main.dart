@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/Features/home/data/models/item_model.dart';
 import 'package:food_app/Features/home/presentation/views/home_view.dart';
 import 'package:food_app/Features/welcome/presntation/views/splash_view.dart';
 import 'package:food_app/Features/welcome/presntation/views/welcome_view.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'Features/Auth/presentation/views/login_view.dart';
 import 'Features/Auth/presentation/views/phone_registration_view.dart';
 import 'Features/Auth/presentation/views/resset_password_view.dart';
@@ -10,6 +11,7 @@ import 'Features/Auth/presentation/views/signUp_view.dart';
 import 'Features/Auth/presentation/views/verfication_code_view.dart';
 import 'Features/inner/presentation/views/category_details_view.dart';
 import 'Features/inner/presentation/views/food_details_view.dart';
+import 'Features/user/presentation/views/user_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,8 +39,9 @@ class MyApp extends StatelessWidget {
         RessetPasswordView.routeName:(context) => RessetPasswordView(),
         PhoneRegistrationView.routeName:(context)=>PhoneRegistrationView(),
         HomeView.routeName:(context)=> HomeView(),
-        FoodDetailsView.routeName:(context)=> FoodDetailsView(),
-        CategoryDetailsView.routeName:(context)=>CategoryDetailsView()
+        FoodDetailsView.routeName:(context)=> const FoodDetailsView(),
+        CategoryDetailsView.routeName:(context)=>CategoryDetailsView(),
+        UserView.routeName :(context)=> UserView(),
 
       },
     );

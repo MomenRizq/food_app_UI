@@ -49,7 +49,7 @@ class WelcomeViewBody extends StatelessWidget {
         const CustomLineWidget(text:"sign in with" , color: Colors.white, width: 15,fontsize: 16,),
         const SizedBox(height: 10),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 25 ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -58,13 +58,13 @@ class WelcomeViewBody extends StatelessWidget {
                   buttonText: "FACEBOOK",
                   imageIcon: 'assets/icons/face_icon.png',
                   hight: 55,
-                  width: 150),
+                  width: MediaQuery.of(context).size.width * 0.420),
               CustomButton.StyleOne(
                   fun: () {},
                   buttonText: "GOOGLE",
                   imageIcon: 'assets/icons/google_icon.png',
                   hight: 55,
-                  width: 150),
+                  width: MediaQuery.of(context).size.width * 0.420),
             ],
           ),
         ),

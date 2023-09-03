@@ -3,8 +3,9 @@ import 'package:food_app/Core/consts/colors.dart';
 import 'package:food_app/Core/widgets/back_widget.dart';
 import 'package:food_app/Core/widgets/custom_tab_controller.dart';
 import 'package:food_app/Core/widgets/custom_text_widget.dart';
+import 'package:food_app/Core/widgets/food_item_widget.dart';
 import 'package:food_app/Features/home/presentation/views/widgets/side_menu.dart';
-import 'package:food_app/Features/inner/presentation/views/widgets/food_item_widget.dart';
+
 
 import '../../../../Core/widgets/custom_appbar_widget.dart';
 
@@ -32,22 +33,22 @@ class WishlistView extends StatelessWidget {
               const SizedBox(
                 height: 35,
               ),
-              const CustomTabController(
+              CustomTabController(
                 firstText: 'Food Items',
                 seconedText: 'Resturants',
               ),
               const SizedBox(
                 height: 20,
               ),
-              ListView.builder(
-                physics: ScrollPhysics(),
-                  padding: const EdgeInsets.all(0),
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: 6,
-                  itemBuilder: (context,index){
-                    return const FoodItemWidget();
-                  }),
+              // ListView.builder(
+              //   physics: ScrollPhysics(),
+              //     padding: const EdgeInsets.all(0),
+              //     scrollDirection: Axis.vertical,
+              //     shrinkWrap: true,
+              //     itemCount: 6,
+              //     itemBuilder: (context,index){
+              //       return  FoodItemWidget();
+              //     }),
             ],
           ),
         ),
